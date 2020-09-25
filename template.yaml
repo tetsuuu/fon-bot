@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  fondesk bot
+  notify on fondesk channel
+
+Globals:
+  Function:
+    Timeout: 30
+
+Resources:
+  slackBot:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: notify/
+      Handler: fondesk-bot
+      Runtime: go1.x
+      Tracing: Active
+      Events:
+        CatchAll:
+          Type: Api
+          Properties:
+            Path: /mention
+            Method: POST
+
+Outputs:
+  slackBotAPI:
+    Description: "API Gateway endpoint URL for common environment for fondesk Bot Function"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/mention/"

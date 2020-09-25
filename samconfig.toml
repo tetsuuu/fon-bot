@@ -1,0 +1,10 @@
+version = 0.1
+[default]
+[default.deploy]
+[default.deploy.parameters]
+stack_name = "fondesk-bot"
+s3_bucket = "aws-sam-cli-managed-default-samclisourcebucket-1iexh0e9do3ti"
+s3_prefix = "fondesk-bot"
+region = "us-east-1"
+confirm_changeset = true
+capabilities = "CAPABILITY_IAM"
